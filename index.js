@@ -11,7 +11,7 @@ const creatediagnostic = require("./routes/administration/diagnostic");
 const inventory = require("./routes/administration/inventory");
 const Pharmacy = require("./routes/administration/pharmacy");
 const inventoryview = require("./routes/inventory/view");
-
+const auth = require("./routes/auth/login");
 
 
 
@@ -26,8 +26,13 @@ app.use('/api/diagnostic', creatediagnostic);
 app.use('/api/inventory', inventory);
 app.use('/api/Pharmacy', Pharmacy);
 app.use('/api/inventoryview', inventoryview);
+app.use('/api', auth);
 
 
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger-output.json')
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('Listening on port', PORT));

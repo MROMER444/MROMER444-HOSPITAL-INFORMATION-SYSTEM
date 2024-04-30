@@ -20,6 +20,7 @@ enum Role {
   Diagnostic
   Pharmacy
   Inventory
+  Reception
 }
 
 model Patient {
@@ -49,6 +50,7 @@ model Staff {
   birthDate DateTime
   number    String
   gender    Gender
+  password String @default("pass")
 }
 
 model Diagnostic {

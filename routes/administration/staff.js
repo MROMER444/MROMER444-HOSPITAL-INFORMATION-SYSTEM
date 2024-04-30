@@ -1,9 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const dotenv = require('dotenv');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const user_auth = require("../auth/user_auth");
+const physician_auth = require('../midlleware/physician');
+const diagnostic_auth = require("../midlleware/diagnostic")
+const inventory_auth = require("../midlleware/inventory")
+const pharmacy_auth = require("../midlleware/pharmacy")
+const reception_auth = require("../midlleware/reception")
 
+
+
+
+
+dotenv.config({ path: '.env' })
+const JWT_SECRET = process.env.JWT_SECRET
+
+
+function setAuthorizationHeader(req, res) {
+    const token = jwt.sign({ id: req.staff.id, role: req.staff.role }, JWT_SECRET);
+    res.header('Authorization', 'Bearer ' + token);
+}
 
 
 router.post('/create-staff', async (req, res) => {
@@ -12,24 +33,24 @@ router.post('/create-staff', async (req, res) => {
         if (error) {
             return res.status(400).json({ 'error': error.details[0].message });
         }
-        const { name, role, address, birthDate, number, gender } = req.body;
+        const { name, role, address, birthDate, number, gender, password } = req.body;
         let staff = await prisma.staff.findFirst({ where: { number } });
         if (staff) {
             return res.status(404).json({ "error": "staff already registered!" });
         }
         staff = await prisma.staff.create({
-            data: { name, role, address, birthDate, number, gender }
+            data: { name, role, address, birthDate, number, gender, password: bcrypt.hashSync(password, 10) }
         });
+        const token = jwt.sign({ id: staff.id , role: staff.role }, JWT_SECRET);
 
         if (!staff) {
             return res.status(404).json({ "error": "Failed to create staff" });
         } else {
-            return res.status(201).json({ "records": { "staff": staff }, "success": true });
+            return res.status(201).json({ "records": { "staff": staff , "Token": { token } }, "success": true });
         }
 
-
-
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
@@ -82,7 +103,7 @@ router.put('/update-staff/:id', async (req, res) => {
 
 
 
-router.get('/get-inventory', async (req, res) => {
+router.get('/get-inventory', user_auth , inventory_auth , async (req, res) => {
     try {
         const Inventory = await prisma.staff.findMany({ where: { role: "Inventory" } });
         if (!Inventory || Inventory.length === 0) {
@@ -99,7 +120,7 @@ router.get('/get-inventory', async (req, res) => {
 
 
 
-router.get('/get-Physician', async (req, res) => {
+router.get('/get-Physician', user_auth , physician_auth , async (req, res) => {
     try {
         const physician = await prisma.staff.findMany({ where: { role: "Physician" } });
         if (!physician || physician.length === 0) {
@@ -115,7 +136,7 @@ router.get('/get-Physician', async (req, res) => {
 })
 
 
-router.get('/get-Diagnostic', async (req, res) => {
+router.get('/get-Diagnostic', user_auth , diagnostic_auth , async (req, res) => {
     try {
         const diagnostic = await prisma.staff.findMany({ where: { role: "Diagnostic" } });
         if (!diagnostic || diagnostic.length === 0) {
@@ -132,7 +153,7 @@ router.get('/get-Diagnostic', async (req, res) => {
 
 
 
-router.get('/get-Pharmacy', async (req, res) => {
+router.get('/get-Pharmacy', user_auth , pharmacy_auth , async (req, res) => {
     try {
         const pharmacy = await prisma.staff.findMany({ where: { role: "Pharmacy" } });
         if (!pharmacy || pharmacy.length === 0) {
@@ -171,11 +192,12 @@ router.get('/get-profile/:id', async (req, res) => {
 function staffValidation(user) {
     const schema = {
         name: Joi.string().min(3).max(20).required(),
-        role: Joi.string().valid('Physician', 'Diagnostic', 'Pharmacy', 'Inventory').required(),
+        role: Joi.string().valid('Physician', 'Diagnostic', 'Pharmacy', 'Inventory', 'Reception').required(),
         address: Joi.string().required(),
         birthDate: Joi.date().required(),
         number: Joi.string().min(11).max(11).required(),
         gender: Joi.string().valid('MALE', 'FEMALE').required(),
+        password: Joi.string().min(8).required()
     }
     return Joi.validate(user, schema);
 }
