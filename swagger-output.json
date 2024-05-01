@@ -2,13 +2,13 @@
   "swagger": "2.0",
   "info": {
     "title": "API FOR HOSPITAL INFORMATION SYSTEM",
-    "description": "api for Hospital Information SystemThe HIS API provides a secure and efficient interface for managing hospital operations, including patient data, appointment scheduling",
+    "description": "API for Hospital Information System. The HIS API provides a secure and efficient interface for managing hospital operations, including patient data, appointment scheduling",
     "version": "1.0.0"
   },
-  "host": "https://his-50kt.onrender.com",
+  "host": "his-50kt.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/patient/by-name/{name}": {
