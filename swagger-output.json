@@ -5,7 +5,7 @@
     "description": "api for Hospital Information SystemThe HIS API provides a secure and efficient interface for managing hospital operations, including patient data, appointment scheduling",
     "version": "1.0.0"
   },
-  "host": "localhost:5000",
+  "host": "https://his-50kt.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
