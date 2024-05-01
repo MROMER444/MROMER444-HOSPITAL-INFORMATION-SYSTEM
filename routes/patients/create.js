@@ -6,35 +6,35 @@ const prisma = new PrismaClient();
 const auth = require('../auth/user_auth');
 const reception_auth = require("../midlleware/reception")
 
-// const multer = require('multer');
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'uploads/')
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, `${Date.now()}-${file.originalname}`)
-//     }
-// });
-// const upload = multer({ storage: storage });
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}-${file.originalname}`)
+    }
+});
+const upload = multer({ storage: storage });
 
 
 
-router.post('/create-patient', async (req, res) => {
-    // console.log(req.file);
-    // console.log(req.body); 
+router.post('/create-patient',  upload.single('image'), async (req, res) => {
+    console.log(req.file);
+    console.log(req.body); 
     try {
         const { error } = patientValidation(req.body);
         if (error) {
             return res.status(400).json({ 'error': error.details[0].message });
         }
         const { name, number, address, birthDate, emergencycontact, gender } = req.body;
-        // const image = req.file.path;
+        const image = req.file.path;
         let patient = await prisma.patient.findFirst({ where: { number } });
         if (patient) {
             return res.status(404).json({ "error": "Patient already registered!" });
         }
         patient = await prisma.patient.create({
-            data: { name, number, address, birthDate, emergencycontact, gender}
+            data: { name, number, address, birthDate, emergencycontact, gender, image }
         });
 
         const currentDate = new Date();
@@ -73,6 +73,7 @@ function patientValidation(user) {
         birthDate: Joi.date().required(),
         emergencycontact: Joi.string().min(11).max(11).required(),
         gender: Joi.string().valid('MALE', 'FEMALE').required(),
+        image: Joi.string().allow(null)
     }
     return Joi.validate(user, schema);
 }
