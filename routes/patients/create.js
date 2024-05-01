@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 
 
 
-router.post('/create-patient', auth , reception_auth , upload.single('image'), async (req, res) => {
+router.post('/create-patient', upload.single('image'), async (req, res) => {
     console.log(req.file);
     console.log(req.body); 
     try {
