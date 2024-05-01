@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "HIS API",
-    "description": "simple api for Hospital Information System",
+    "title": "API FOR HOSPITAL INFORMATION SYSTEM",
+    "description": "api for Hospital Information SystemThe HIS API provides a secure and efficient interface for managing hospital operations, including patient data, appointment scheduling",
     "version": "1.0.0"
   },
   "host": "localhost:5000",
@@ -20,11 +20,25 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -53,6 +67,11 @@
         "description": "",
         "parameters": [
           {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -75,9 +94,6 @@
                 },
                 "gender": {
                   "example": "any"
-                },
-                "image": {
-                  "example": "any"
                 }
               }
             }
@@ -89,6 +105,12 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -107,6 +129,11 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
             "type": "string"
           },
           {
@@ -132,6 +159,12 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -150,11 +183,22 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -169,6 +213,11 @@
       "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -207,6 +256,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -224,6 +276,11 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
             "type": "string"
           },
           {
@@ -246,6 +303,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -258,9 +318,22 @@
     "/api/staff/get-inventory": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -303,9 +376,22 @@
     "/api/staff/get-Diagnostic": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -319,9 +405,22 @@
     "/api/staff/get-Pharmacy": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -341,11 +440,19 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -659,9 +766,22 @@
     "/api/inventoryview/get-inventory": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"

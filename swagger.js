@@ -2,8 +2,8 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
   info: {
-    title: 'HIS API',
-    description: 'simple api for Hospital Information System'
+    title: 'API FOR HOSPITAL INFORMATION SYSTEM',
+    description: 'api for Hospital Information SystemThe HIS API provides a secure and efficient interface for managing hospital operations, including patient data, appointment scheduling'
   },
   host: 'localhost:5000',
 };

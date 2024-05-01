@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const auth = require('../auth/user_auth');
+const reception_auth = require("../midlleware/reception")
 
 
 
-
-router.delete('/delete-patient/:id', async (req, res) => {
+router.delete('/delete-patient/:id', auth , reception_auth , async (req, res) => {
     try {
         const { id } = req.params;
         const patientId = parseInt(id);

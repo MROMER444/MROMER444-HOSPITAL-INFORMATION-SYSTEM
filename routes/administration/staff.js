@@ -27,7 +27,7 @@ function setAuthorizationHeader(req, res) {
 }
 
 
-router.post('/create-staff', async (req, res) => {
+router.post('/create-staff',user_auth , async (req, res) => {
     try {
         const { error } = staffValidation(req.body);
         if (error) {
@@ -60,7 +60,7 @@ router.post('/create-staff', async (req, res) => {
 
 
 
-router.put('/update-staff/:id', async (req, res) => {
+router.put('/update-staff/:id',user_auth , async (req, res) => {
     try {
         const { error } = staffValidation(req.body);
         if (error) {
@@ -171,7 +171,7 @@ router.get('/get-Pharmacy', user_auth , pharmacy_auth , async (req, res) => {
 
 
 
-router.get('/get-profile/:id', async (req, res) => {
+router.get('/get-profile/:id', user_auth , async (req, res) => {
     try {
         const { id } = req.params;
         const staff_profile_Id = parseInt(id);

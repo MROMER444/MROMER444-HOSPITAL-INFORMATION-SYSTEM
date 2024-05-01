@@ -3,7 +3,8 @@ const router = express.Router();
 const Joi = require("joi");
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-
+const auth = require('../auth/user_auth');
+const reception_auth = require("../midlleware/reception")
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -18,7 +19,7 @@ const upload = multer({ storage: storage });
 
 
 
-router.post('/create-patient',upload.single('image'), async (req, res) => {
+router.post('/create-patient', auth , reception_auth , upload.single('image'), async (req, res) => {
     console.log(req.file);
     console.log(req.body); 
     try {

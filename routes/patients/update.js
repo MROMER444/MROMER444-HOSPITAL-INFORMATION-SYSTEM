@@ -3,10 +3,13 @@ const router = express.Router();
 const Joi = require("joi");
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const auth = require('../auth/user_auth');
+const reception_auth = require("../midlleware/reception")
 
 
 
-router.put('/update-patient/:id', async (req, res) => {
+
+router.put('/update-patient/:id', auth , reception_auth , async (req, res) => {
     try {
         const { error } = updateValidation(req.body);
     if (error) {

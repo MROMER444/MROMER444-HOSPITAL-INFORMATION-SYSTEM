@@ -2,14 +2,15 @@ const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const auth = require('../auth/user_auth');
+const reception_auth = require("../midlleware/reception")
 
 
 
 
 
 
-
-router.get('/by-name/:name', async (req, res) => {
+router.get('/by-name/:name', auth , reception_auth ,  async (req, res) => {
     try {
 
         const { name } = req.params;

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const auth = require('../auth/user_auth');
+const inventory_auth = require("../midlleware/inventory")
 
 
 
@@ -9,8 +11,7 @@ const prisma = new PrismaClient();
 
 
 
-
-router.get('/get-inventory', async (req, res) => {
+router.get('/get-inventory',auth , inventory_auth , async (req, res) => {
     try {
         const inventory = await prisma.inventory.findMany({});
         if (!inventory || inventory.length === 0) {
