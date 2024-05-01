@@ -28,13 +28,13 @@ router.post('/create-patient', upload.single('image'), async (req, res) => {
             return res.status(400).json({ 'error': error.details[0].message });
         }
         const { name, number, address, birthDate, emergencycontact, gender } = req.body;
-        const image = req.file.path;
+        // const image = req.file.path;
         let patient = await prisma.patient.findFirst({ where: { number } });
         if (patient) {
             return res.status(404).json({ "error": "Patient already registered!" });
         }
         patient = await prisma.patient.create({
-            data: { name, number, address, birthDate, emergencycontact, gender, image }
+            data: { name, number, address, birthDate, emergencycontact, gender}
         });
 
         const currentDate = new Date();
