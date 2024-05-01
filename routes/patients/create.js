@@ -5,18 +5,29 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}-${file.originalname}`)
+    }
+});
+const upload = multer({ storage: storage });
 
-//qUEUE ASCENDING
 
 
-router.post('/create-patient', async (req, res) => {
+router.post('/create-patient',upload.single('image'), async (req, res) => {
+    console.log(req.file);
+    console.log(req.body); 
     try {
         const { error } = patientValidation(req.body);
         if (error) {
             return res.status(400).json({ 'error': error.details[0].message });
         }
-        const { name, number, address, birthDate, emergencycontact, gender, image } = req.body;
-
+        const { name, number, address, birthDate, emergencycontact, gender } = req.body;
+        const image = req.file.path;
         let patient = await prisma.patient.findFirst({ where: { number } });
         if (patient) {
             return res.status(404).json({ "error": "Patient already registered!" });
@@ -40,6 +51,7 @@ router.post('/create-patient', async (req, res) => {
         }
 
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 });
