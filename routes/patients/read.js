@@ -10,7 +10,7 @@ const reception_auth = require("../midlleware/reception")
 
 
 
-router.get('/by-name/:name', auth , reception_auth ,  async (req, res) => {
+router.get('/by-name/:name' ,  async (req, res) => {
     try {
 
         const { name } = req.params;
@@ -34,7 +34,7 @@ router.get('/by-name/:name', auth , reception_auth ,  async (req, res) => {
 
 
 
-router.get('/get-queue', async (req, res) => {
+router.get('/get-queue', auth , async (req, res) => {
     try {
         const queueData = await prisma.ticket.findMany({
             select: {

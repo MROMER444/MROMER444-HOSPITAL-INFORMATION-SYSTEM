@@ -5,10 +5,10 @@ const doc = {
     title: 'API FOR HOSPITAL INFORMATION SYSTEM',
     description: 'API for Hospital Information System. The HIS API provides a secure and efficient interface for managing hospital operations, including patient data, appointment scheduling'
   },
-  host: 'his-50kt.onrender.com',
-  schemes: ['https'], // or ['http']
+  host: 'localhost:5000',
+  schemes: ['https'],
 };
-
+// his-50kt.onrender.com
 const outputFile = './swagger-output.json';
 const endpointsFiles = ['./index.js'];
 

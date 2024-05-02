@@ -3,7 +3,7 @@ const cors = require('cors');
 
 const app = express()
 app.use(cors());
-
+require('dotenv').config();
 
 const readPatient = require("./routes/patients/read");
 const createPatient = require("./routes/patients/create");
@@ -30,6 +30,16 @@ app.use('/api/inventory', inventory);
 app.use('/api/Pharmacy', Pharmacy);
 app.use('/api/inventoryview', inventoryview);
 app.use('/api', auth);
+
+if (app.get('env') === 'development') {
+    process.env.DATABASE_URL = process.env.DEV_DATABASE_URL;
+} else {
+    process.env.DATABASE_URL = process.env.DATABASE_URL;
+}
+
+
+
+console.log('Environment:', app.get('env'));
 
 
 
