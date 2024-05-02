@@ -18,7 +18,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-
 router.post('/create-patient',  upload.single('image'), async (req, res) => {
     console.log(req.file);
     console.log(req.body); 
