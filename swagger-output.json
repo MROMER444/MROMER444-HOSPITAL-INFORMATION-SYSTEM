@@ -8,7 +8,7 @@
   "host": "localhost:5000",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/patient/by-name/{name}": {
@@ -35,19 +35,9 @@
     "/api/patient/get-queue": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "x-auth-token",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"

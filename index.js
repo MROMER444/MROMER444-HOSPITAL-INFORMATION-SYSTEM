@@ -39,6 +39,13 @@ if (app.get('env') === 'development') {
 
 
 
+if (app.get('env') === 'development'){
+    process.env.DATABASE_URL = process.env.DEV_DATABASE_URL
+}else{
+    process.env.DATABASE_URL = process.env.DATABASE_URL
+}
+
+
 console.log('Environment:', app.get('env'));
 
 

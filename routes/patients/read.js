@@ -1,10 +1,12 @@
+const cors = require('cors');
 const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const auth = require('../auth/user_auth');
 const reception_auth = require("../midlleware/reception")
-
+const app = express();
+app.use(cors());
 
 
 
@@ -34,7 +36,7 @@ router.get('/by-name/:name' ,  async (req, res) => {
 
 
 
-router.get('/get-queue', auth , async (req, res) => {
+router.get('/get-queue', async (req, res) => {
     try {
         const queueData = await prisma.ticket.findMany({
             select: {
