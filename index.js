@@ -1,8 +1,6 @@
 const express = require("express");
-const cors = require('cors');
 
 const app = express()
-app.use(cors());
 require('dotenv').config();
 
 const readPatient = require("./routes/patients/read");
@@ -41,8 +39,10 @@ if (app.get('env') === 'development') {
 
 if (app.get('env') === 'development'){
     process.env.DATABASE_URL = process.env.DEV_DATABASE_URL
+    console.log("Runing on development env");
 }else{
-    process.env.DATABASE_URL = process.env.DATABASE_URL
+    process.env.DATABASE_URL = process.env.DATABASE_URL                 
+    console.log("Runing on prod env");
 }
 
 

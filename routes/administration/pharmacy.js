@@ -94,7 +94,7 @@ function PharmacyValidation(user) {
         name: Joi.string().min(3).max(30).required(),
         unit: Joi.string().required(),
         quantity: Joi.string().required(),
-        code: Joi.string().required(),   
+        code: Joi.string().required(),
     }
     return Joi.validate(user, schema);
 }
