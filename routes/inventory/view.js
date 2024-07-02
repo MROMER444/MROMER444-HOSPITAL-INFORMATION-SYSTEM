@@ -6,11 +6,6 @@ const auth = require('../auth/user_auth');
 const inventory_auth = require("../midlleware/inventory")
 
 
-
-
-
-
-
 router.get('/get-inventory',auth , inventory_auth , async (req, res) => {
     try {
         const inventory = await prisma.inventory.findMany({});
@@ -25,20 +20,6 @@ router.get('/get-inventory',auth , inventory_auth , async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;

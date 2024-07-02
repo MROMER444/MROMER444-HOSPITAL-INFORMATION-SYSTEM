@@ -14,9 +14,6 @@ const pharmacy_auth = require("../midlleware/pharmacy")
 const reception_auth = require("../midlleware/reception")
 
 
-
-
-
 dotenv.config({ path: '.env' })
 const JWT_SECRET = process.env.JWT_SECRET
 
@@ -54,9 +51,6 @@ router.post('/create-staff',user_auth , async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
-
-
 
 
 
@@ -99,10 +93,6 @@ router.put('/update-staff/:id',user_auth , async (req, res) => {
 
 
 
-
-
-
-
 router.get('/get-inventory', user_auth , inventory_auth , async (req, res) => {
     try {
         const Inventory = await prisma.staff.findMany({ where: { role: "Inventory" } });
@@ -117,7 +107,6 @@ router.get('/get-inventory', user_auth , inventory_auth , async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
 
 
 router.get('/get-Physician', user_auth , physician_auth , async (req, res) => {
@@ -169,8 +158,6 @@ router.get('/get-Pharmacy', user_auth , pharmacy_auth , async (req, res) => {
 })
 
 
-
-
 router.get('/get-profile/:id', user_auth , async (req, res) => {
     try {
         const { id } = req.params;
@@ -186,7 +173,6 @@ router.get('/get-profile/:id', user_auth , async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
 
 
 function staffValidation(user) {

@@ -5,8 +5,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-
-router.post('/create-Pharmacy', async (req, res) => {
+router.post('/create-Pharmacy',  async (req, res) => {
     try {
         const { error } = PharmacyValidation(req.body);
         if (error) {
@@ -27,8 +26,6 @@ router.post('/create-Pharmacy', async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
-
 
 
 router.put('/update-Pharmacy/:id', async (req, res) => {

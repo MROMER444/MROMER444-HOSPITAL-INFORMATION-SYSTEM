@@ -37,5 +37,5 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger-output.json')
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log('Listening on port', PORT));

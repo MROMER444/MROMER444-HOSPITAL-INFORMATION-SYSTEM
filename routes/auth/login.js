@@ -5,19 +5,12 @@ const prisma = new PrismaClient();
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-
-
-
 const dotenv = require('dotenv');
+
+
 
 dotenv.config({ path: '.env' })
 const JWT_SECRET = process.env.JWT_SECRET
-
-
-
-
-
 
 router.post('/login', async (req, res) => {
     try {
@@ -42,9 +35,6 @@ router.post('/login', async (req, res) => {
         res.status(400).json({ "msg": "Internal Server Error" })
     }
 });
-
-
-
 
 
 

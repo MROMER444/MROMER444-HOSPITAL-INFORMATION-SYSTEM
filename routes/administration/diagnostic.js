@@ -5,8 +5,6 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-
-
 router.post('/create-diagnostic', async (req, res) => {
     try {
         const { error } = diagnosticValidation(req.body);
@@ -28,10 +26,6 @@ router.post('/create-diagnostic', async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
-
-
-
 
 
 router.put('/update-diagnostic/:id', async (req, res) => {
@@ -86,17 +80,6 @@ router.get('/get-diagnostic', async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 

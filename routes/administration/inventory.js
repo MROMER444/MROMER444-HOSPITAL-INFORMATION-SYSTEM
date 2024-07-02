@@ -5,9 +5,6 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-
-
-
 router.post('/create-inventory', async (req, res) => {
     try {
         const { error } = inventoryValidation(req.body);
@@ -40,11 +37,6 @@ router.post('/create-inventory', async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
-
-
-
-
 
 
 router.put('/update-inventory/:id', async (req, res) => {
@@ -86,10 +78,6 @@ router.put('/update-inventory/:id', async (req, res) => {
 
 })
 
-
-
-
-
 router.get('/get-inventory', async (req, res) => {
     try {
         const inventory = await prisma.inventory.findMany({});
@@ -104,14 +92,6 @@ router.get('/get-inventory', async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
-
-
-
-
-
-
-
 
 
 function inventoryValidation(user) {
