@@ -17,6 +17,7 @@ router.get('/get-inventory',auth , inventory_auth , async (req, res) => {
             return;
         }
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
