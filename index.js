@@ -1,7 +1,24 @@
 const express = require("express");
+const fs = require('fs');
+const path = require('path');
+const morgan = require('morgan');
+
+
+
+
+
+
+
+
+
 
 const app = express()
 require('dotenv').config();
+
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+app.use(morgan('combined', { stream: accessLogStream }));
+
+
 
 const readPatient = require("./routes/patients/read");
 const createPatient = require("./routes/patients/create");
@@ -29,24 +46,24 @@ app.use('/api/Pharmacy', Pharmacy);
 app.use('/api/inventoryview', inventoryview);
 app.use('/api', auth);
 
-if (app.get('env') === 'development') {
-    process.env.DATABASE_URL = process.env.DEV_DATABASE_URL;
-} else {
-    process.env.DATABASE_URL = process.env.DATABASE_URL;
-}
+// if (app.get('env') === 'development') {
+//     process.env.DATABASE_URL = process.env.DEV_DATABASE_URL;
+// } else {
+//     process.env.DATABASE_URL = process.env.DATABASE_URL;
+// }
 
 
 
-if (app.get('env') === 'development'){
-    process.env.DATABASE_URL = process.env.DEV_DATABASE_URL
-    console.log("Runing on development env");
-}else{
-    process.env.DATABASE_URL = process.env.DATABASE_URL                 
-    console.log("Runing on prod env");
-}
+// if (app.get('env') === 'development'){
+//     process.env.DATABASE_URL = process.env.DEV_DATABASE_URL
+//     console.log("Runing on development env");
+// }else{
+//     process.env.DATABASE_URL = process.env.DATABASE_URL                 
+//     console.log("Runing on prod env");
+// }
 
 
-console.log('Environment:', app.get('env'));
+// console.log('Environment:', app.get('env'));
 
 
 

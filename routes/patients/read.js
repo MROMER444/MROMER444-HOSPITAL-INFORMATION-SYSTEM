@@ -30,9 +30,6 @@ router.get('/by-name/:name' ,  async (req, res) => {
 });
 
 
-
-
-
 router.get('/get-queue', async (req, res) => {
     try {
         const queueData = await prisma.ticket.findMany({
@@ -58,32 +55,11 @@ router.get('/get-queue', async (req, res) => {
             return;
         };
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

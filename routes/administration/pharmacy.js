@@ -18,9 +18,9 @@ router.post('/create-Pharmacy', async (req, res) => {
         });
 
         if (!pharmacy) {
-            return res.status(404).json({ "error": "Failed to create diagnostic" });
+            return res.status(404).json({ "error": "Failed to create Equipment" });
         } else {
-            return res.status(201).json({ "records": { "Pharmacy": pharmacy }, "success": true });
+            return res.status(201).json({ "records": { "Equipments": pharmacy }, "success": true });
         }
 
     } catch (error) {
@@ -83,7 +83,6 @@ router.get('/get-pharmacy', async (req, res) => {
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })
-
 
 
 
