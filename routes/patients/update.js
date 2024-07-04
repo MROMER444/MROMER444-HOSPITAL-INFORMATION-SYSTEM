@@ -21,7 +21,7 @@ router.put('/update-patient/:id', auth , reception_auth , async (req, res) => {
     if(!patient){
         return res.status(404).json({ "error": "patient with this Id not found!" })
     }
-    patient = await prisma.patient.findFirst({where: {number: req.body.number}}); //TODO
+    patient = await prisma.patient.findFirst({where: {number: req.body.number}});
     if(patient){
         return res.status(404).json({ "error": "can't update, another patient with this number" })
     }

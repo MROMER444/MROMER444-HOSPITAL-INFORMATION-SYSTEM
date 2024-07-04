@@ -16,6 +16,7 @@ enum Gender {
 }
 
 enum Role {
+  Admin
   Physician
   Diagnostic
   Pharmacy

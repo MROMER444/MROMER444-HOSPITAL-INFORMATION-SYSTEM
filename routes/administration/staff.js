@@ -93,21 +93,27 @@ router.put('/update-staff/:id',user_auth , async (req, res) => {
 
 
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 router.get('/get-inventory', user_auth , inventory_auth , async (req, res) => {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> dev_env
 
 
 
 
 router.get('/get-inventory' , async (req, res) => {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> dev_env
     try {
         const Inventory = await prisma.staff.findMany({ where: { role: "Inventory" } });
         if (!Inventory || Inventory.length === 0) {
