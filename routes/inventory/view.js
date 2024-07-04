@@ -6,11 +6,21 @@ const auth = require('../auth/user_auth');
 const inventory_auth = require("../midlleware/inventory")
 
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 router.get('/get-inventory',auth , inventory_auth , async (req, res) => {
+=======
+
+router.get('/get-inventory' , async (req, res) => {
+>>>>>>> Stashed changes
+=======
+
+router.get('/get-inventory' , async (req, res) => {
+>>>>>>> Stashed changes
     try {
         const inventory = await prisma.inventory.findMany({});
         if (!inventory || inventory.length === 0) {
-            res.status(404).json({ 'records': { "inventory": [], "success": false } });
+            res.status(404).json({ 'records': { "inventory": [], "success": true } });
             return;
         } else {
             res.status(200).json({ 'records': { "inventory": inventory, "success": true } });
@@ -22,5 +32,11 @@ router.get('/get-inventory',auth , inventory_auth , async (req, res) => {
     }
 })
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 module.exports = router;

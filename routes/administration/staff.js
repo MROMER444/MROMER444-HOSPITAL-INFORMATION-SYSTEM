@@ -93,7 +93,21 @@ router.put('/update-staff/:id',user_auth , async (req, res) => {
 
 
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 router.get('/get-inventory', user_auth , inventory_auth , async (req, res) => {
+=======
+=======
+>>>>>>> Stashed changes
+
+
+
+
+router.get('/get-inventory' , async (req, res) => {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     try {
         const Inventory = await prisma.staff.findMany({ where: { role: "Inventory" } });
         if (!Inventory || Inventory.length === 0) {
@@ -104,6 +118,7 @@ router.get('/get-inventory', user_auth , inventory_auth , async (req, res) => {
             return;
         }
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ "msg": "Internal Server Error" });
     }
 })

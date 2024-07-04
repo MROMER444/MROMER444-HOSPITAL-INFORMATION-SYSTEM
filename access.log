@@ -1,0 +1,8 @@
+::1 - - [04/Jul/2024:07:05:23 +0000] "GET / HTTP/1.1" 200 13 "-" "PostmanRuntime/7.37.3"
+::1 - - [04/Jul/2024:07:07:08 +0000] "GET /api/Pharmacy/get-pharmacy HTTP/1.1" 200 138 "-" "PostmanRuntime/7.37.3"
+::1 - - [04/Jul/2024:07:09:22 +0000] "GET /api/Phamacy/get-pharmacy HTTP/1.1" 404 163 "-" "PostmanRuntime/7.37.3"
+::1 - - [04/Jul/2024:07:09:40 +0000] "GET /api/Pharmacy/get-pharmacy HTTP/1.1" 200 138 "-" "PostmanRuntime/7.37.3"
+::1 - - [04/Jul/2024:07:10:09 +0000] "GET / HTTP/1.1" 404 139 "-" "PostmanRuntime/7.37.3"::1 - - [04/Jul/2024:07:13:01 +0000] "GET /api/staff/get-inventory HTTP/1.1" 200 210 "-" "PostmanRuntime/7.37.3"
+::1 - - [04/Jul/2024:07:13:06 +0000] "GET /api/staff/get-inventory HTTP/1.1" 200 210 "-" "PostmanRuntime/7.37.3"
+::1 - - [04/Jul/2024:07:13:38 +0000] "GET /api/staff/get-inventory HTTP/1.1" 200 210 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+::1 - - [04/Jul/2024:07:13:39 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:5000/api/staff/get-inventory" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
